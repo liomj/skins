@@ -19,7 +19,7 @@ f. Groups -> Select groups that you want to give permission to see the menu
 
 6. Save the block
 7. In you XOOPS site folder search for this file themes/xswatch4/tpl/nav-menu.tpl and rename it nav_menu_backup.tpl
-8. Create a new empty nav-menu.tpl in the same folder and paste this code
+8. Create a new empty nav-menu.tpl in the same folder and paste this code. Save the file.
 
 <{$xoops_menu_xswatch4}>
            
