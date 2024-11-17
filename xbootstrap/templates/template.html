@@ -1,0 +1,76 @@
+<div id="menu_area" class="menu-area">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default custom-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarSupportedContent">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav">
+                        <{foreach item=menu from=$block}>
+                            <!-- Main Menu Item -->
+                            <{if $menu.level == 0}>
+                                <li class="<{if $menu.hassub}>dropdown<{/if}>">
+                                    <a href="<{$menu.link}>" 
+                                       class="<{if $menu.hassub}>dropdown-toggle<{/if}>" 
+                                       <{if $menu.hassub}>data-toggle="dropdown" aria-expanded="false"<{/if}>
+                                       target="<{$menu.target}>" 
+                                       title="<{$menu.alt_title}>">
+                                        <{if $menu.image}><span class="<{$menu.image}>"></span><{/if}>
+                                        <{$menu.title}>
+                                    </a>
+                                    <!-- Submenu -->
+                                    <{if $menu.hassub}>
+                                        <ul class="dropdown-menu">
+                                            <{foreach item=submenu from=$block}>
+                                                <{if $submenu.level == 1}>
+                                                    <li>
+                                                        <a href="<{$submenu.link}>" 
+                                                           target="<{$submenu.target}>" 
+                                                           title="<{$submenu.alt_title}>">
+                                                            <{if $submenu.image}><span class="<{$submenu.image}>"></span><{/if}>
+                                                            <{$submenu.title}>
+                                                        </a>
+                                                    </li>
+                                                <{/if}>
+                                            <{/foreach}>
+                                        </ul>
+                                    <{/if}>
+                                </li>
+                            <{/if}>
+                        <{/foreach}>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <form class="navbar-form" role="search" action="<{xoAppUrl 'search.php'}>" method="get">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="query" placeholder="<{$smarty.const.THEME_SEARCH_TEXT}>">
+                                </div>
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                <input type="hidden" name="action" value="results">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+(function($) {
+    $('.dropdown-menu a').on('click', function(e) {
+        if ($(this).next().hasClass('dropdown-menu')) {
+            e.preventDefault();
+            $(this).next('.dropdown-menu').toggle();
+        }
+    });
+})(jQuery);
+</script>
