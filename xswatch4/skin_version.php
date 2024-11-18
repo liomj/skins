@@ -18,8 +18,6 @@
  * @version         $Id: skin_version.php 0 2010-07-21 18:47:04Z trabis $
  */
 
-$skinVersion['template'] = 'templates/template.html';
+$skinVersion['template'] = 'templates/template.tpl';
 $skinVersion['css'] = array('style.css');
 
-
-?>
